@@ -13,7 +13,6 @@ const HomeScreen = () => {
             uri: "https://links.papareact.com/gzs",
           }}
         />
-        <Text style={[tw`text-red-500 p-10`, { color: "purple" }]}>Let's build Uber app!</Text>
         <NavOptions />
       </View>
     </SafeAreaView>

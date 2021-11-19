@@ -1,11 +1,35 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
+import tw from "tailwind-react-native-classnames";
+
+const data = [
+  { id: "111", title: "Get a Ride", image: "https://links.papareact.com/3pn", screen: "MapScreen" },
+  { id: "222", title: "Order Food", image: "https://links.papareact.com/28w", screen: "EatsScreen" },
+];
 
 const NavOptions = () => {
+  const navigation = useNavigation();
+
   return (
-    <View>
-      <Text>Hello here is Down Nav bar</Text>
-    </View>
+    <FlatList
+      data={data}
+      horizontal
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate(item.screen)}
+          style={tw`p-2 pl-6 pt-4 bg-gray-200 m-2 w-40`}
+        >
+          <View style={{ justifyContent: "flex-start", alignItems: "center" }}>
+            <Image style={{ width: 120, height: 120, resizeMode: "contain" }} source={{ uri: item.image }} />
+            <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+            <Icon style={tw`p-2 bg-black rounded-full w-10 mt-4`} name="arrowright" color="white" type="antdesign" />
+          </View>
+        </TouchableOpacity>
+      )}
+    />
   );
 };
 
